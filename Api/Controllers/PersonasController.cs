@@ -11,8 +11,12 @@ public class PersonasController : ControllerBase
 {
     private readonly PersonaRepositorio _repo;
 
-    public PersonasController(PersonaRepositorio repo)
-        => _repo = repo;
+    public PersonasController(PersonaRepositorio repo) => _repo = repo;
+
+    // GET: api/personas
+    [HttpGet]
+    public async Task<ActionResult<List<Persona>>> ListarTodas()
+        => Ok(await _repo.ObtenerTodasAsync());
 
     // GET: api/personas/5
     [HttpGet("{id}")]
@@ -20,8 +24,7 @@ public class PersonasController : ControllerBase
     {
         try
         {
-            var persona = await _repo.ObtenerPorIdAsync(id);
-            return Ok(persona);
+            return Ok(await _repo.ObtenerPorIdAsync(id));
         }
         catch (FoodieEventsException ex)
         {
@@ -33,22 +36,21 @@ public class PersonasController : ControllerBase
     [HttpPost("chef")]
     public async Task<ActionResult> CrearChef([FromBody] CrearChefRequest request)
     {
-        try
-        {
-            var chef = new Chef(
-                request.Nombre, request.Email, request.Telefono,
-                request.Especialidad, request.Nacionalidad, request.AñosExperiencia);
+        var chef = new Chef(
+            nombre: request.Nombre,
+            email: request.Email,
+            telefono: request.Telefono,
+            especialidad: request.Especialidad,
+            nacionalidad: request.Nacionalidad,
+            añosExperiencia: request.AñosExperiencia
+        );
 
-            // Guardar en base de datos
-            await _repo.GuardarAsync(chef); // ← Necesitamos este método (lo agrego abajo)
+        await _repo.GuardarAsync(chef);
 
-            return CreatedAtAction(nameof(ObtenerPorId), new { id = chef.Id }, 
-                new { mensaje = "Chef creado con éxito", chefId = chef.Id });
-        }
-        catch (FoodieEventsException ex)
-        {
-            return BadRequest(ex.Message);
-        }
+        return CreatedAtAction(
+            nameof(ObtenerPorId),
+            new { id = chef.Id },
+            new { mensaje = "Chef creado con éxito", id = chef.Id });
     }
 
     // POST: api/personas/participante
@@ -56,28 +58,56 @@ public class PersonasController : ControllerBase
     public async Task<ActionResult> CrearParticipante([FromBody] CrearParticipanteRequest request)
     {
         var participante = new Participante(
-            request.Nombre, request.Email, request.Telefono,
-            request.DocumentoIdentidad, request.RestriccionesAlimentarias ?? "");
+            nombre: request.Nombre,
+            email: request.Email,
+            telefono: request.Telefono,
+            documento: request.DocumentoIdentidad,                    // ← CORREGIDO: "documento"
+            restricciones: request.RestriccionesAlimentarias ?? ""   // ← CORREGIDO: "restricciones"
+        );
 
         await _repo.GuardarAsync(participante);
 
-        return CreatedAtAction(nameof(ObtenerPorId), new { id = participante.Id },
-            new { mensaje = "Participante creado", id = participante.Id });
+        return CreatedAtAction(
+            nameof(ObtenerPorId),
+            new { id = participante.Id },
+            new { mensaje = "Participante creado con éxito", id = participante.Id });
     }
 
     // POST: api/personas/invitado-especial
     [HttpPost("invitado-especial")]
     public async Task<ActionResult> CrearInvitadoEspecial([FromBody] CrearInvitadoEspecialRequest request)
     {
-        var invitado = new InvitadoEspecial(request.Nombre, request.Email, request.Telefono);
+        var invitado = new InvitadoEspecial(
+            nombre: request.Nombre,
+            email: request.Email,
+            telefono: request.Telefono
+        );
+
         await _repo.GuardarAsync(invitado);
 
-        return CreatedAtAction(nameof(ObtenerPorId), new { id = invitado.Id },
-            new { mensaje = "Invitado especial creado - ENTRA GRATIS A TODO", id = invitado.Id });
+        return CreatedAtAction(
+            nameof(ObtenerPorId),
+            new { id = invitado.Id },
+            new { mensaje = "Invitado especial creado con éxito", id = invitado.Id });
+    }
+
+    // DELETE: api/personas/5
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Eliminar(int id)
+    {
+        try
+        {
+            await _repo.EliminarAsync(id);
+            return Ok(new { mensaje = "Persona eliminada correctamente" });
+        }
+        catch (FoodieEventsException)
+        {
+            return NotFound("Persona no encontrada");
+        }
     }
 }
 
-// DTOs para no exponer las clases de dominio directamente
+// ======================= DTOs =======================
 public class CrearChefRequest
 {
     public string Nombre { get; set; } = null!;

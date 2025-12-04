@@ -89,4 +89,19 @@ public class EventoRepositorio
         // Reflexión para setear el Id (porque está protected)
         typeof(Evento).GetProperty("Id")!.SetValue(evento, id);
     }
-}
+
+        // Listar todos los eventos (solo datos básicos)
+    public async Task<List<EventoDto>> ObtenerTodosAsync()
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        return (await conn.QueryAsync<EventoDto>("SELECT * FROM Events ORDER BY StartDate DESC")).AsList();
+    }
+
+    // Eliminar evento (con CASCADE se borran las reservas automáticamente)
+    public async Task EliminarAsync(int id)
+    {
+        using var conn = new MySqlConnection(_connectionString);
+        var filas = await conn.ExecuteAsync("DELETE FROM Events WHERE Id = @Id", new { Id = id });
+        if (filas == 0) throw new FoodieEventsException("Evento no encontrado");
+    }
+    }

@@ -10,3 +10,15 @@ C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\refin
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.pdb
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.sourcelink.json
+D:\Repos\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.deps.json
+D:\Repos\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.dll
+D:\Repos\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.pdb
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.AssemblyInfoInputs.cache
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.AssemblyInfo.cs
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.csproj.CoreCompileInputs.cache
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.sourcelink.json
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.dll
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\refint\Biblioteca.dll
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.pdb
+D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll

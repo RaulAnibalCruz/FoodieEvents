@@ -16,62 +16,106 @@ public class PersonaRepositorio
     public async Task<Persona> ObtenerPorIdAsync(int id)
     {
         using var conn = new MySqlConnection(_connectionString);
-        
+
         var dto = await conn.QueryFirstOrDefaultAsync<PersonaDto>(
             "SELECT * FROM Persons WHERE Id = @Id", new { Id = id });
 
-        if (dto == null) throw new FoodieEventsException("Persona no encontrada");
+        if (dto == null)
+            throw new FoodieEventsException("Persona no encontrada");
 
-        return dto.PersonType switch
+        Persona persona = dto.PersonType switch
         {
-            "Chef" => new Chef(dto.Nombre, dto.Email, dto.Telefono, 
+            "Chef" => new Chef(dto.Nombre, dto.Email, dto.Telefono,
                               dto.Specialty!, dto.Nationality!, dto.YearsExperience!.Value),
-            "Participant" => new Participante(dto.Nombre, dto.Email, dto.Telefono, 
+            "Participant" => new Participante(dto.Nombre, dto.Email, dto.Telefono,
                                             dto.IdentityDocument!, dto.DietaryRestrictions ?? ""),
             "SpecialGuest" => new InvitadoEspecial(dto.Nombre, dto.Email, dto.Telefono),
             _ => throw new FoodieEventsException("Tipo de persona desconocido")
         };
+
+        typeof(Persona).GetProperty("Id")!.SetValue(persona, dto.Id);
+        return persona;
     }
 
-
-        public async Task GuardarAsync(Persona persona)
-{
-    using var conn = new MySqlConnection(_connectionString);
-
-    string sql = persona switch
+    public async Task GuardarAsync(Persona persona)
     {
-        Chef => @"
-            INSERT INTO Persons (Name, Email, Phone, PersonType, Specialty, Nationality, YearsExperience)
-            VALUES (@Nombre, @Email, @Telefono, 'Chef', @Especialidad, @Nacionalidad, @AñosExperiencia);
-            SELECT LAST_INSERT_ID();",
+        using var conn = new MySqlConnection(_connectionString);
 
-        Participante => @"
-            INSERT INTO Persons (Name, Email, Phone, PersonType, IdentityDocument, DietaryRestrictions)
-            VALUES (@Nombre, @Email, @Telefono, 'Participant', @DocumentoIdentidad, @RestriccionesAlimentarias);
-            SELECT LAST_INSERT_ID();",
+        string sql;
+        var parametros = new
+        {
+            Nombre = persona.Nombre,
+            Email = persona.Email,
+            Telefono = persona.Telefono,
+            Especialidad = (persona as Chef)?.Especialidad,
+            Nacionalidad = (persona as Chef)?.Nacionalidad,
+            AñosExperiencia = (persona as Chef)?.AñosExperiencia,
+            DocumentoIdentidad = (persona as Participante)?.DocumentoIdentidad,
+            RestriccionesAlimentarias = (persona as Participante)?.RestriccionesAlimentarias
+        };
 
-        InvitadoEspecial => @"
-            INSERT INTO Persons (Name, Email, Phone, PersonType, IsVIP)
-            VALUES (@Nombre, @Email, @Telefono, 'SpecialGuest', TRUE);
-            SELECT LAST_INSERT_ID();",
+        // SWITCH CLÁSICO → 100% compatible y sin CS8506
+        if (persona is Chef)
+        {
+            sql = @"
+                INSERT INTO Persons (Name, Email, Phone, PersonType, Specialty, Nationality, YearsExperience)
+                VALUES (@Nombre, @Email, @Telefono, 'Chef', @Especialidad, @Nacionalidad, @AñosExperiencia);
+                SELECT LAST_INSERT_ID();";
+        }
+        else if (persona is Participante)
+        {
+            sql = @"
+                INSERT INTO Persons (Name, Email, Phone, PersonType, IdentityDocument, DietaryRestrictions)
+                VALUES (@Nombre, @Email, @Telefono, 'Participant', @DocumentoIdentidad, @RestriccionesAlimentarias);
+                SELECT LAST_INSERT_ID();";
+        }
+        else if (persona is InvitadoEspecial)
+        {
+            sql = @"
+                INSERT INTO Persons (Name, Email, Phone, PersonType, IsVIP)
+                VALUES (@Nombre, @Email, @Telefono, 'SpecialGuest', TRUE);
+                SELECT LAST_INSERT_ID();";
+        }
+        else
+        {
+            throw new NotSupportedException("Tipo de persona no soportado");
+        }
 
-        _ => throw new NotSupportedException("Tipo no soportado")
-    };
+        var id = await conn.ExecuteScalarAsync<int>(sql, parametros);
+        typeof(Persona).GetProperty("Id")!.SetValue(persona, id);
+    }
 
-    var parametros = new
+    public async Task<List<Persona>> ObtenerTodasAsync()
     {
-        persona.Nombre,
-        persona.Email,
-        persona.Telefono,
-        Especialidad = (persona as Chef)?.Especialidad,
-        Nacionalidad = (persona as Chef)?.Nacionalidad,
-        AñosExperiencia = (persona as Chef)?.AñosExperiencia,
-        DocumentoIdentidad = (persona as Participante)?.DocumentoIdentidad,
-        RestriccionesAlimentarias = (persona as Participante)?.RestriccionesAlimentarias
-    };
+        using var conn = new MySqlConnection(_connectionString);
+        var dtos = await conn.QueryAsync<PersonaDto>("SELECT * FROM Persons");
 
-    var id = await conn.ExecuteScalarAsync<int>(sql, parametros);
-    typeof(Persona).GetProperty("Id")!.SetValue(persona, id);
-}
-    // Acá irán Insertar, Actualizar, etc.
+        var lista = new List<Persona>();
+
+        foreach (var dto in dtos)
+        {
+            Persona persona = dto.PersonType switch
+            {
+                "Chef" => new Chef(dto.Nombre, dto.Email, dto.Telefono,
+                                  dto.Specialty!, dto.Nationality!, dto.YearsExperience!.Value),
+                "Participant" => new Participante(dto.Nombre, dto.Email, dto.Telefono,
+                                                dto.IdentityDocument!, dto.DietaryRestrictions ?? ""),
+                "SpecialGuest" => new InvitadoEspecial(dto.Nombre, dto.Email, dto.Telefono),
+                _ => throw new FoodieEventsException("Tipo desconocido")
+            };
+
+            typeof(Persona).GetProperty("Id")!.SetValue(persona, dto.Id);
+            lista.Add(persona);
+        }
+
+        return lista;
+    }
+
+    public async Task EliminarAsync(int id)
+    {
+        using var conn = new MySqlConnector.MySqlConnection(_connectionString);
+        var filas = await conn.ExecuteAsync("DELETE FROM Persons WHERE Id = @Id", new { Id = id });
+        if (filas == 0)
+            throw new FoodieEventsException("Persona no encontrada para eliminar");
+    }
 }

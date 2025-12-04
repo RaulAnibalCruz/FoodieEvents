@@ -10,37 +10,88 @@ namespace Api.Controllers;
 public class EventosController : ControllerBase
 {
     private readonly EventoRepositorio _repo;
+    private readonly PersonaRepositorio _personaRepo;
 
-    public EventosController(EventoRepositorio repo)
-        => _repo = repo;
+    public EventosController(EventoRepositorio repo, PersonaRepositorio personaRepo)
+    {
+        _repo = repo;
+        _personaRepo = personaRepo;
+    }
 
-    [HttpPost]
-    public async Task<ActionResult> CrearEvento([FromBody] CrearEventoRequest request)
+    [HttpGet]
+    public async Task<ActionResult> Listar()
+        => Ok(await _repo.ObtenerTodosAsync());
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult> Obtener(int id)
     {
         try
         {
-            var chef = new Chef(request.ChefNombre, request.ChefEmail, request.ChefTelefono,
-                               request.ChefEspecialidad, request.ChefNacionalidad, request.ChefAñosExperiencia);
+            var evento = await _repo.ObtenerPorIdCompletoAsync(id);
+            return Ok(evento);
+        }
+        catch (FoodieEventsException ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }
 
-            Evento evento = request.Modalidad == "Presencial"
-                ? new EventoPresencial(request.Nombre, request.Descripcion, request.Tipo,
-                                     request.FechaInicio, request.FechaFin, request.Capacidad,
-                                     request.Precio, chef, request.Lugar!)
-                : new EventoVirtual(request.Nombre, request.Descripcion, request.Tipo,
-                                   request.FechaInicio, request.FechaFin, request.Capacidad,
-                                   request.Precio, chef, request.UrlStreaming!);
+    [HttpPost]
+    public async Task<ActionResult> Crear([FromBody] CrearEventoRequest request)
+    {
+        try
+        {
+            var chef = await _personaRepo.ObtenerPorIdAsync(request.ChefId) as Chef
+                       ?? throw new FoodieEventsException("Chef no encontrado");
+
+            Evento evento = request.Modalidad?.ToLower() == "virtual"
+                ? new EventoVirtual(
+                    request.Nombre,
+                    request.Descripcion,
+                    request.Tipo,
+                    request.FechaInicio,
+                    request.FechaFin,
+                    request.Capacidad,
+                    request.Precio,
+                    chef,
+                    request.UrlStreaming!)
+                : new EventoPresencial(
+                    request.Nombre,
+                    request.Descripcion,
+                    request.Tipo,
+                    request.FechaInicio,
+                    request.FechaFin,
+                    request.Capacidad,
+                    request.Precio,
+                    chef,
+                    request.Lugar!);
 
             await _repo.InsertarAsync(evento);
-            return Ok(new { mensaje = "Evento creado con éxito", eventoId = evento.Id });
+
+            return CreatedAtAction(nameof(Obtener), new { id = evento.Id },
+                new { mensaje = "Evento creado con éxito", id = evento.Id });
         }
         catch (FoodieEventsException ex)
         {
             return BadRequest(ex.Message);
         }
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Eliminar(int id)
+    {
+        try
+        {
+            await _repo.EliminarAsync(id);
+            return Ok("Evento eliminado correctamente");
+        }
+        catch (FoodieEventsException ex)
+        {
+            return NotFound(ex.Message);
+        }
+    }
 }
 
-// DTO para no exponer las clases de dominio directamente
 public class CrearEventoRequest
 {
     public string Nombre { get; set; } = null!;
@@ -53,12 +104,5 @@ public class CrearEventoRequest
     public string Modalidad { get; set; } = "Presencial";
     public string? Lugar { get; set; }
     public string? UrlStreaming { get; set; }
-
-    // Datos del chef
-    public string ChefNombre { get; set; } = null!;
-    public string ChefEmail { get; set; } = null!;
-    public string ChefTelefono { get; set; } = null!;
-    public string ChefEspecialidad { get; set; } = null!;
-    public string ChefNacionalidad { get; set; } = null!;
-    public int ChefAñosExperiencia { get; set; }
+    public int ChefId { get; set; }
 }
