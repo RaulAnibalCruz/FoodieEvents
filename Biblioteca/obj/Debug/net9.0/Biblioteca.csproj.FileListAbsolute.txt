@@ -9,3 +9,4 @@ C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\Bibli
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\refint\Biblioteca.dll
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.pdb
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.sourcelink.json

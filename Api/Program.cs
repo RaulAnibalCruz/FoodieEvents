@@ -1,21 +1,28 @@
 // Api/Program.cs
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+// Swagger CORRECTO para .NET 8
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connString = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddControllers();
 
-// Inyectamos los repositorios
+// Inyección de repositorios
+var connString = builder.Configuration.GetConnectionString("Default") 
+                 ?? throw new InvalidOperationException("Falta connection string");
+
 builder.Services.AddScoped(_ => new Datos.Repositorios.PersonaRepositorio(connString));
 builder.Services.AddScoped(_ => new Datos.Repositorios.EventoRepositorio(connString));
 builder.Services.AddScoped(_ => new Datos.Repositorios.ReservaRepositorio(connString));
 
 var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+// Swagger en desarrollo
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 app.MapControllers();

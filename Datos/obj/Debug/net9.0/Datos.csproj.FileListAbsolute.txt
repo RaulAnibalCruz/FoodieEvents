@@ -13,3 +13,4 @@ C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.dll
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\refint\Datos.dll
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.pdb
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\ref\Datos.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.sourcelink.json

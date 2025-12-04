@@ -33,5 +33,45 @@ public class PersonaRepositorio
         };
     }
 
+
+        public async Task GuardarAsync(Persona persona)
+{
+    using var conn = new MySqlConnection(_connectionString);
+
+    string sql = persona switch
+    {
+        Chef => @"
+            INSERT INTO Persons (Name, Email, Phone, PersonType, Specialty, Nationality, YearsExperience)
+            VALUES (@Nombre, @Email, @Telefono, 'Chef', @Especialidad, @Nacionalidad, @AñosExperiencia);
+            SELECT LAST_INSERT_ID();",
+
+        Participante => @"
+            INSERT INTO Persons (Name, Email, Phone, PersonType, IdentityDocument, DietaryRestrictions)
+            VALUES (@Nombre, @Email, @Telefono, 'Participant', @DocumentoIdentidad, @RestriccionesAlimentarias);
+            SELECT LAST_INSERT_ID();",
+
+        InvitadoEspecial => @"
+            INSERT INTO Persons (Name, Email, Phone, PersonType, IsVIP)
+            VALUES (@Nombre, @Email, @Telefono, 'SpecialGuest', TRUE);
+            SELECT LAST_INSERT_ID();",
+
+        _ => throw new NotSupportedException("Tipo no soportado")
+    };
+
+    var parametros = new
+    {
+        persona.Nombre,
+        persona.Email,
+        persona.Telefono,
+        Especialidad = (persona as Chef)?.Especialidad,
+        Nacionalidad = (persona as Chef)?.Nacionalidad,
+        AñosExperiencia = (persona as Chef)?.AñosExperiencia,
+        DocumentoIdentidad = (persona as Participante)?.DocumentoIdentidad,
+        RestriccionesAlimentarias = (persona as Participante)?.RestriccionesAlimentarias
+    };
+
+    var id = await conn.ExecuteScalarAsync<int>(sql, parametros);
+    typeof(Persona).GetProperty("Id")!.SetValue(persona, id);
+}
     // Acá irán Insertar, Actualizar, etc.
 }

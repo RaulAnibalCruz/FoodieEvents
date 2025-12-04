@@ -40,3 +40,4 @@ C:\Users\Usuario\Documents\GitHub\FoodieEvents\Api\obj\Debug\net9.0\refint\Api.d
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Api\obj\Debug\net9.0\Api.pdb
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Api\obj\Debug\net9.0\Api.genruntimeconfig.cache
 C:\Users\Usuario\Documents\GitHub\FoodieEvents\Api\obj\Debug\net9.0\ref\Api.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Api\obj\Debug\net9.0\Api.sourcelink.json

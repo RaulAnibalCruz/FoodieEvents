@@ -64,3 +64,4 @@ CREATE TABLE Reservations (
 CREATE INDEX idx_events_dates ON Events(StartDate, EndDate);
 CREATE INDEX idx_reservations_event ON Reservations(EventId);
 CREATE INDEX idx_reservations_person ON Reservations(PersonId);
+
