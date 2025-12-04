@@ -1,0 +1,15 @@
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\bin\Debug\net9.0\Datos.deps.json
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\bin\Debug\net9.0\Datos.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\bin\Debug\net9.0\Datos.pdb
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\bin\Debug\net9.0\Biblioteca.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\bin\Debug\net9.0\Biblioteca.pdb
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.AssemblyInfo.cs
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.csproj.Up2Date
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\refint\Datos.dll
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\Datos.pdb
+C:\Users\Usuario\Documents\GitHub\FoodieEvents\Datos\obj\Debug\net9.0\ref\Datos.dll
