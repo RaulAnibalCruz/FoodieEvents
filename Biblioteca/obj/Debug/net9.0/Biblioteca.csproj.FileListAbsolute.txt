@@ -22,3 +22,15 @@ D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.dll
 D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\refint\Biblioteca.dll
 D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.pdb
 D:\Repos\FoodieEvents\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll
+D:\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.deps.json
+D:\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.dll
+D:\FoodieEvents\Biblioteca\bin\Debug\net9.0\Biblioteca.pdb
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.GeneratedMSBuildEditorConfig.editorconfig
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.AssemblyInfoInputs.cache
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.AssemblyInfo.cs
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.csproj.CoreCompileInputs.cache
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.sourcelink.json
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.dll
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\refint\Biblioteca.dll
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\Biblioteca.pdb
+D:\FoodieEvents\Biblioteca\obj\Debug\net9.0\ref\Biblioteca.dll
