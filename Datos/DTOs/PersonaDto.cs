@@ -1,4 +1,3 @@
-// Datos/Dtos/PersonaDto.cs
 namespace Datos.Dtos;
 
 public class PersonaDto
@@ -7,17 +6,17 @@ public class PersonaDto
     public string Nombre { get; set; } = null!;
     public string Email { get; set; } = null!;
     public string Telefono { get; set; } = null!;
-    public string PersonType { get; set; } = null!;
-    
+    public string TipoPersona { get; set; } = null!;
+
     // Chef
-    public string? Specialty { get; set; }
-    public string? Nationality { get; set; }
-    public int? YearsExperience { get; set; }
-    
+    public string? Especialidad { get; set; }
+    public string? Nacionalidad { get; set; }
+    public int? AniosExperiencia { get; set; }
+
     // Participante
-    public string? IdentityDocument { get; set; }
-    public string? DietaryRestrictions { get; set; }
-    
-    // Invitado especial
-    public bool IsVIP { get; set; }
+    public string? DocumentoIdentidad { get; set; }
+    public string? RestriccionesAlimentarias { get; set; }
+
+    // InvitadoEspecial
+    public bool EsVIP { get; set; }
 }

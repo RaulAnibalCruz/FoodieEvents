@@ -1,42 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Repos\\FoodieEvents\\Api\\Api.csproj": {}
+    "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Api\\Api.csproj": {}
   },
   "projects": {
-    "D:\\Repos\\FoodieEvents\\Api\\Api.csproj": {
+    "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Api\\Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\FoodieEvents\\Api\\Api.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Api\\Api.csproj",
         "projectName": "Api",
-        "projectPath": "D:\\Repos\\FoodieEvents\\Api\\Api.csproj",
-        "packagesPath": "C:\\Users\\Lab20-PC02\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\FoodieEvents\\Api\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Api\\Api.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Lab20-PC02\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
-                "projectPath": "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj"
+              "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj"
               },
-              "D:\\Repos\\FoodieEvents\\Datos\\Datos.csproj": {
-                "projectPath": "D:\\Repos\\FoodieEvents\\Datos\\Datos.csproj"
+              "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\Datos.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\Datos.csproj"
               }
             }
           }
@@ -51,7 +45,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -85,32 +79,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
+    "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj",
         "projectName": "Biblioteca",
-        "projectPath": "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj",
-        "packagesPath": "C:\\Users\\Lab20-PC02\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\FoodieEvents\\Biblioteca\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Lab20-PC02\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -129,7 +117,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -150,40 +138,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Repos\\FoodieEvents\\Datos\\Datos.csproj": {
+    "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Repos\\FoodieEvents\\Datos\\Datos.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\Datos.csproj",
         "projectName": "Datos",
-        "projectPath": "D:\\Repos\\FoodieEvents\\Datos\\Datos.csproj",
-        "packagesPath": "C:\\Users\\Lab20-PC02\\.nuget\\packages\\",
-        "outputPath": "D:\\Repos\\FoodieEvents\\Datos\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\Datos.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Datos\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Lab20-PC02\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
-                "projectPath": "D:\\Repos\\FoodieEvents\\Biblioteca\\Biblioteca.csproj"
+              "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj": {
+                "projectPath": "C:\\Users\\Usuario\\Documents\\GitHub\\FoodieEvents\\Biblioteca\\Biblioteca.csproj"
               }
             }
           }
@@ -198,7 +180,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -229,7 +211,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

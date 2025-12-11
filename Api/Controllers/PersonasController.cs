@@ -42,7 +42,7 @@ public class PersonasController : ControllerBase
             telefono: request.Telefono,
             especialidad: request.Especialidad,
             nacionalidad: request.Nacionalidad,
-            añosExperiencia: request.AñosExperiencia
+            aniosExperiencia: request.AñosExperiencia
         );
 
         await _repo.GuardarAsync(chef);

@@ -1,12 +1,14 @@
-// Persona.cs
+// Biblioteca/Persona.cs
+
+
 namespace Biblioteca;
 
-public abstract class Persona : IRegistrable
+public abstract class Persona
 {
     public int Id { get; protected set; }
-    public string Nombre { get; protected set; }
-    public string Email { get; protected set; }
-    public string Telefono { get; protected set; }
+    public string Nombre { get; protected set; } = null!;
+    public string Email { get; protected set; } = null!;
+    public string Telefono { get; protected set; } = null!;
 
     protected Persona(string nombre, string email, string telefono)
     {
@@ -19,7 +21,11 @@ public abstract class Persona : IRegistrable
         Telefono = telefono.Trim();
     }
 
-    public abstract void Registrarse();
+    // ← MÉTODO VIRTUAL (¡OBLIGATORIO!)
+    public virtual void Registrarse()
+    {
+        Console.WriteLine($"{Nombre} se ha registrado en el sistema.");
+    }
 
     public virtual string ObtenerInformacionContacto()
         => $"{Nombre} - {Email} - {Telefono}";

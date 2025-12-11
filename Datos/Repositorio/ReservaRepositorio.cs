@@ -2,6 +2,7 @@
 using Biblioteca;
 using Dapper;
 using MySqlConnector;
+using System.Data;
 
 namespace Datos.Repositorios;
 
@@ -12,38 +13,36 @@ public class ReservaRepositorio
     public ReservaRepositorio(string connectionString)
         => _connectionString = connectionString;
 
-    public async Task CrearConValidacionAsync(int personId, int eventId, bool pagado, string metodoPago)
+    public async Task CrearConValidacionAsync(int personaId, int eventoId, bool pagada, string metodoPago)
     {
         using var conn = new MySqlConnection(_connectionString);
 
-        var parametros = new
-        {
-            p_PersonId = personId,
-            p_EventId = eventId,
-            p_Pagado = pagado,
-            p_MetodoPago = metodoPago
-        };
-
         await conn.ExecuteAsync(
             "CrearReserva",
-            parametros,
-            commandType: System.Data.CommandType.StoredProcedure);
+            new { p_PersonaId = personaId, p_EventoId = eventoId, p_Pagada = pagada, p_MetodoPago = metodoPago },
+            commandType: CommandType.StoredProcedure);
     }
 
-        public async Task<List<dynamic>> ObtenerTodasAsync()
+    public async Task<List<dynamic>> ObtenerTodasAsync()
     {
-    using var conn = new MySqlConnection(_connectionString);
-    return (await conn.QueryAsync(@"
-    SELECT r.Id, p.Name AS Persona, e.Name AS Evento, r.ReservationDate, r.Status, r.IsPaid
-    FROM Reservations r
-    JOIN Persons p ON r.PersonId = p.Id
-    JOIN Events e ON r.EventId = e.Id
-    ORDER BY r.ReservationDate DESC")).AsList();
+        using var conn = new MySqlConnection(_connectionString);
+        return (await conn.QueryAsync(@"
+            SELECT r.Id, 
+                   p.Nombre AS Persona, 
+                   e.Nombre AS Evento, 
+                   r.FechaReserva, 
+                   r.Estado, 
+                   r.Pagada
+            FROM Reservas r
+            JOIN Personas p ON r.PersonaId = p.Id
+            JOIN Eventos e ON r.EventoId = e.Id
+            ORDER BY r.FechaReserva DESC")).AsList();
     }
+
     public async Task EliminarAsync(int id)
     {
-    using var conn = new MySqlConnection(_connectionString);
-    var filas = await conn.ExecuteAsync("DELETE FROM Reservations WHERE Id = @Id", new { Id = id });
-    if (filas == 0) throw new FoodieEventsException("Reserva no encontrada");
+        using var conn = new MySqlConnection(_connectionString);
+        var filas = await conn.ExecuteAsync("DELETE FROM Reservas WHERE Id = @Id", new { Id = id });
+        if (filas == 0) throw new FoodieEventsException("Reserva no encontrada");
     }
 }

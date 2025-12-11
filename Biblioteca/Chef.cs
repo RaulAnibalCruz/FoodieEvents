@@ -1,27 +1,24 @@
-// Chef.cs
+// Biblioteca/Chef.cs
 namespace Biblioteca;
 
 public class Chef : Persona
 {
-    public string Especialidad { get; private set; }
-    public string Nacionalidad { get; private set; }
-    public int AñosExperiencia { get; private set; }
+    public string Especialidad { get; private set; } = null!;
+    public string Nacionalidad { get; private set; } = null!;
+    public int AniosExperiencia { get; private set; }
 
-    public Chef(string nombre, string email, string telefono, 
-                string especialidad, string nacionalidad, int añosExperiencia)
+    public Chef(string nombre, string email, string telefono,
+                string especialidad, string nacionalidad, int aniosExperiencia)
         : base(nombre, email, telefono)
     {
         Validador.ValidarTextoRequerido(especialidad, "Especialidad");
         Validador.ValidarTextoRequerido(nacionalidad, "Nacionalidad");
-        Validador.ValidarNumeroPositivo(añosExperiencia, "Años de experiencia");
+        Validador.ValidarNumeroPositivo(aniosExperiencia, "Años de experiencia");
 
         Especialidad = especialidad;
         Nacionalidad = nacionalidad;
-        AñosExperiencia = añosExperiencia;
+        AniosExperiencia = aniosExperiencia;
     }
-
-    public override void Registrarse()
-        => Console.WriteLine($"Chef {Nombre} registrado como organizador.");
 
     public override string ObtenerInformacionContacto()
         => base.ObtenerInformacionContacto() + $" | Chef de {Especialidad}";
