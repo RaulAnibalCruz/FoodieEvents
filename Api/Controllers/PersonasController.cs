@@ -61,8 +61,8 @@ public class PersonasController : ControllerBase
             nombre: request.Nombre,
             email: request.Email,
             telefono: request.Telefono,
-            documento: request.DocumentoIdentidad,                    // ← CORREGIDO: "documento"
-            restricciones: request.RestriccionesAlimentarias ?? ""   // ← CORREGIDO: "restricciones"
+            documento: request.DocumentoIdentidad,                    
+            restricciones: request.RestriccionesAlimentarias ?? ""   
         );
 
         await _repo.GuardarAsync(participante);

@@ -14,7 +14,7 @@ public class InvitadoEspecial : Persona
     public InvitadoEspecial(string nombre, string email, string telefono)
         : base(nombre, email, telefono) { }
 
-    // ← AHORA SÍ COMPILA PERFECTO
+    
     public override void Registrarse()
         => Console.WriteLine($"Invitado especial {Nombre} registrado - Acceso gratuito.");
 

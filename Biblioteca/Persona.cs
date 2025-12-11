@@ -21,7 +21,7 @@ public abstract class Persona
         Telefono = telefono.Trim();
     }
 
-    // ← MÉTODO VIRTUAL (¡OBLIGATORIO!)
+    // ← MÉTODO VIRTUAL
     public virtual void Registrarse()
     {
         Console.WriteLine($"{Nombre} se ha registrado en el sistema.");

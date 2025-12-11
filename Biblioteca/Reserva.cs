@@ -21,7 +21,7 @@ public class Reserva
             if (persona is InvitadoEspecial)
             {
                 Pagada = true;
-                MetodoPago = Biblioteca.MetodoPago.Cortesia;  // ← AHORA SÍ FUNCIONA
+                MetodoPago = Biblioteca.MetodoPago.Cortesia;  
                 Estado = EstadoReserva.Confirmada;
             }
             else if (pagada)

@@ -37,7 +37,7 @@ public class PersonaRepositorio
         return persona;
     }
 
-    // MÉTODO QUE FALTABA: GUARDAR
+    // MÉTODO  GUARDAR
     public async Task GuardarAsync(Persona persona)
     {
         using var conn = new MySqlConnection(_connectionString);
@@ -94,7 +94,7 @@ public class PersonaRepositorio
         return lista;
     }
 
-    // MÉTODO QUE FALTABA: ELIMINAR
+    // MÉTODO ELIMINAR
     public async Task EliminarAsync(int id)
     {
         using var conn = new MySqlConnection(_connectionString);
